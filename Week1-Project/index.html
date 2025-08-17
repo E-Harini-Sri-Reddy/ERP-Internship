@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-do List</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>My To-Do List</h1>
+      </header>
+
+      <main>
+        <section class="form-group">
+          <form class="add-task">
+            <input
+              type="text"
+              class="task"
+              id="task"
+              placeholder="Add a new task..."
+            />
+            <input type="date" class="date" id="due-date" />
+            <button id="add-btn" type="button">+</button>
+          </form>
+        </section>
+
+        <section class="tasks">
+          <h2>Tasks:</h2>
+          <div class="to-do-container">
+            <ul id="to-do"></ul>
+          </div>
+        </section>
+      </main>
+
+      <!-- <section class="colors">
+        <h2>colors:</h2>
+        <div class="color color1">#daf1ff</div>
+        <div class="color color2">#b9e5ff</div>
+        <div class="color color3">#a5ddff</div>
+        <div class="color color4">#9bd9ff</div>
+        <div class="color color5">#7fcfff</div>
+        <div class="color color6">#00b4d8</div>
+        <div class="color color7">#0096c7</div>
+        <div class="color color8">#0077b6</div>
+        <div class="color color9" style="color: aliceblue">#023e8a</div>
+        <div class="color color10" style="color: aliceblue">#03045e</div>
+      </section> -->
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: #F0F4F8;
+    min-height: 90vh;
+    width: 60%;
+    border: 1px solid #0077b6;
+    border-radius: 17px;
+    margin: 30px auto 40px;
+    box-shadow: 7px 7px rgba(0, 0, 0, 0.2);
+    padding-bottom: 60px;
+    font-size: 18px;
+}
+
+header {
+    text-align: center;
+    background-color: #0077b6;
+    color: white;
+    padding: 30px;
+    border-radius: 15px 15px 0 0;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+main {
+    text-align: center;
+}
+
+.add-task {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.task {
+    border: none;
+    border-radius: 5px;
+    height: 3rem;
+    width: 70%;
+    padding-left: 25px;
+    font-size: 18px;
+}
+
+#add-btn {
+    height: 3rem;
+    width: 3rem;
+    font-size: 1.5em;
+    color: white;
+    background-color: #0077b6;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tasks h2 {
+    margin-top: 30px;
+    font-size: 24px;
+}
+
+.to-do-container {
+    width: 500px;
+    margin-top: 20px;
+}
+
+#to-do li {
+    width: 100%;
+    list-style: none;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+    font-size: 18px;
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.date {
+    height: 3rem;
+    padding: 0 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#to-do li input[type="checkbox"] {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+
+#to-do li.priority-high {
+    background-color: #fd8593;
+    border-left: 5px solid #ad0e18;
+}
+
+#to-do li.priority-medium {
+    background-color: #fecaca;
+    border-left: 5px solid #f03141;
+}
+
+#to-do li.priority-low {
+    background-color: #ffecec;
+    border-left: 5px solid #f28482;
+}
+
+#to-do li.completed {
+    text-decoration: line-through;
+    color: gray;
+    opacity: 0.7;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 28px;
+    color: #0077b6;
+}
+
+.delete-btn:hover {
+    color: #023e8a;
+}
+
+/* .colors {
+    margin-top: 210px; 
+}
+
+.color {
+    height: 95px;
+    width: 95px;
+    display: inline-block;
+    font-size: 18px;
+    text-align: center;
+} */
+
+/* .color1 { background-color: #daf1ff; }
+.color2 { background-color: #b9e5ff; }
+.color3 { background-color: #a5ddff; }
+.color4 { background-color: #9bd9ff; }
+.color5 { background-color: #7fcfff; }
+.color6 { background-color: #00b4d8; }
+.color7 { background-color: #0096c7; }
+.color8 { background-color: #0077b6; }
+.color9 { background-color: #023e8a; color: aliceblue; }
+.color10 { background-color: #03045e; color: aliceblue; } */
+
+/* Optional Color Palettes */
+/* Hikaru Nara Palette
+#ffe0e2, #ffe9cf, #ffffd7, #d3ffdc, #d6edff */
+
+/* Cloud Pastel Blue Palette
+#daf1ff, #b9e5ff, #a5ddff, #9bd9ff, #7fcfff */
