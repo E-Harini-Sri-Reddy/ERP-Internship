@@ -43,7 +43,7 @@ function App() {
           </div>
           <div>
             <input
-              type="text"
+              type="number"
               placeholder="Enter Temp & Press Enter"
               value={inputValue}
               onChange={handleInputChange}
