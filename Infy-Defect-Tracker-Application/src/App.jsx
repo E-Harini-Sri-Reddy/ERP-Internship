@@ -1,18 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-function App() {
-  var employees = [
-    { empId: 1234, name: "John", designation: "SE" },
-    { empId: 4567, name: "Tom", designation: "SSE" },
-    { empId: 8910, name: "Kevin", designation: "TA" },
-  ];
+import { useState } from 'react';
+import LoginPage from './Components/LoginPage';
+import './App.css';
+
+export default function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleLogin = (e, username, password) => {
+    e.preventDefault();
+    if (username === 'admin' && password === '12345') {
+      setLoggedIn(true);
+      setError('');
+    } else {
+      setError('Invalid username or password');
+      setTimeout(() => setError(''), 3000);
+    }
+  };
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    setLoggedIn(false);
+  };
+
   return (
     <>
-      <h1> Defect Tracker Application </h1>
+      <div className='container'>
+        <h1>Defect Tracker</h1>
+        {loggedIn ? (
+          <div>
+            <button onClick={handleLogout}>Logout</button>
+            <br />
+            <button>Add Defect</button>
+            <button>View Defect</button>
+            <p>To be added!!!</p>
+          </div>
+        ) : (
+          <LoginPage handleLogin={handleLogin} error={error} />
+        )}
+      </div>
     </>
   );
 }
-
-export default App;
