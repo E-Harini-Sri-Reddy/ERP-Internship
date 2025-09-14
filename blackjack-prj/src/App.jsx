@@ -12,12 +12,10 @@ function App() {
   const [subMessage, setSubMessage] = useState('');
   const [isGameActive, setIsGameActive] = useState(false);
 
-  // Function to deal a random card
   const dealCard = () => {
     return cards[Math.floor(Math.random() * cards.length)];
   };
 
-  // Function to calculate the score, handling Aces (11 or 1)
   const calculateScore = (hand) => {
     let score = hand.reduce((sum, card) => sum + card, 0);
     let aceCount = hand.filter(card => card === 11).length;
@@ -26,6 +24,26 @@ function App() {
       aceCount -= 1;
     }
     return score;
+  };
+
+  const getDisplayHand = (hand) => {
+    let adjustedHand = [...hand];
+    let score = adjustedHand.reduce((sum, card) => sum + card, 0);
+    let aceCount = adjustedHand.filter(card => card === 11).length;
+
+    const displayHand = [];
+
+    for (let card of adjustedHand) {
+      if (card === 11 && score > 21 && aceCount > 0) {
+        displayHand.push(1);
+        score -= 10;
+        aceCount -= 1;
+      } else {
+        displayHand.push(card);
+      }
+    }
+
+    return displayHand;
   };
 
   const startGame = () => {
@@ -47,7 +65,6 @@ function App() {
   };
 
   const stand = () => {
-    // Reveal the computer's hand and play
     let finalComputerHand = [...computerHand];
     let finalComputerScore = calculateScore(finalComputerHand);
 
@@ -65,20 +82,16 @@ function App() {
   const determineWinner = (pScore, cScore) => {
     if (cScore > 21) {
       setMessage("Computer loses! You win! 🥳");
-      setSubMessage("");
     } else if (pScore === cScore) {
       setMessage("It's a draw! 🤝");
-      setSubMessage("");
     } else if (pScore > cScore) {
       setMessage("You win! 🎉");
-      setSubMessage("");
     } else {
       setMessage("You lose 😤");
-      setSubMessage("");
     }
+    setSubMessage('');
   };
 
-  // This useEffect handles immediate win/loss conditions (Blackjack and Busted)
   useEffect(() => {
     if (isGameActive) {
       if (playerScore === 21) {
@@ -96,14 +109,13 @@ function App() {
   return (
     <div className="App">
       <div className="header">
-        {/* ASCII Art Logo */}
         <pre>
 {`.------.            _     _            _    _            _    
 |H_  _ |.          | |   | |          | |  (_)          | |   
 |( \\/ ).-----.     | |__ | | __ _  ___| | ___  __ _  ___| | __
 | \\  /|P /\\  |     | '_ \\| |/ _\` |/ __| |/ / |/ _\` |/ __| |/ /
 |  \\/ | /  \\ |     | |_) | | (_| | (__|   <| | (_| | (__|   < 
-\`-----| \\  / |     |_.__/|_|\\__,_|\\___|_|\\_\\ |\\__,_|\\___|_|\\_\\\\
+\`-----| \\  / |     |_.__/|_|\\__,_|\\___|_|\\_\\ |\\__,_|\\___|_|\\_\\
       |  \\/ P|                            _/ |                
       \`------'                           |__/   `}
         </pre>
@@ -115,7 +127,9 @@ function App() {
         <div className="player-section">
           <h2>Your Cards:</h2>
           <div className="card-list">
-            {playerHand.map((card, index) => <div key={index} className="card">{card}</div>)}
+            {getDisplayHand(playerHand).map((card, index) => (
+              <div key={index} className="card">{card}</div>
+            ))}
           </div>
           <p>Your Score: <strong>{playerScore}</strong></p>
         </div>
@@ -126,7 +140,9 @@ function App() {
             {isGameActive ? (
               <div className="card">{computerHand[0]}</div>
             ) : (
-              computerHand.map((card, index) => <div key={index} className="card">{card}</div>)
+              getDisplayHand(computerHand).map((card, index) => (
+                <div key={index} className="card">{card}</div>
+              ))
             )}
           </div>
           <p>Computer's Score: <strong>{isGameActive ? '?' : computerScore}</strong></p>
