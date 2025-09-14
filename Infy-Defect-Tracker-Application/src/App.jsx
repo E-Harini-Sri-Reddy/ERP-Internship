@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import LoginPage from './Components/LoginPage';
 import './App.css';
+import Navbar from './Components/Navbar';
 
-export default function App() {
+function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState('');
 
@@ -28,10 +29,7 @@ export default function App() {
         <h1>Defect Tracker</h1>
         {loggedIn ? (
           <div>
-            <button onClick={handleLogout}>Logout</button>
-            <br />
-            <button>Add Defect</button>
-            <button>View Defect</button>
+            <Navbar handleLogout={handleLogout}/>
             <p>To be added!!!</p>
           </div>
         ) : (
@@ -41,3 +39,5 @@ export default function App() {
     </>
   );
 }
+
+export default App;

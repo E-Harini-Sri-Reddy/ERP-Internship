@@ -57,3 +57,14 @@ input:focus, textarea:focus, select:focus {
   font-size: 14px;
   margin-bottom: 10px;
 }
+
+.add-defect, .view-defect {
+  text-decoration: underline;
+  background-color: transparent;
+  border: none;
+}
+
+.add-defect:hover, .view-defect:hover, .add-defect.clicked, .view-defect.clicked {
+  color: blue;
+  cursor: pointer;
+}

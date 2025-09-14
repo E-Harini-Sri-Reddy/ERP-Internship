@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import '../App.css';
 
 const LoginPage = ({ handleLogin, error }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const [username, setUsername] = useState('');
+const [password, setPassword] = useState('');
 
-  const handleFormSubmit = (e) => {
-    handleLogin(e, username, password);
-  };
+const handleFormSubmit = (e) => {
+handleLogin(e, username, password);
+};
 
   return (
     <div className='login-div'>
