@@ -37,7 +37,7 @@ const ViewDefect = () => {
         <div className="defects-table">
           <table>
             <thead>
-              <tr className="table-heading">
+              <tr>
                 <th> Defect Category</th>
                 <th> Description</th>
                 <th> Priority</th>

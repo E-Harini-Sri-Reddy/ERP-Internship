@@ -21,7 +21,22 @@ select {
   justify-content: center;
 }
 
-.table-headings {
+table {
+    background-color: rgb(235, 235, 235);
+    border-collapse: collapse;
+    margin: 5px 10px;
+}
+
+table, th, td {
+    border: 1px solid white;
+}
+
+table > thead {
     color: white;
     background-color: rgb(0, 111, 181);
+}
+
+th, td {
+    padding: 8px 15px;
+    text-align: center;
 }

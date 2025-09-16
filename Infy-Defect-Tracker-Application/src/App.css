@@ -44,3 +44,7 @@
 .container-logged-in {
   width: 700px;
 }
+
+.container-logged-in > h1 {
+  margin-bottom: 0px;
+}
