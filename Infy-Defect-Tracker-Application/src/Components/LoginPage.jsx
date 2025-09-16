@@ -12,7 +12,7 @@ handleLogin(e, username, password);
   return (
     <div className='login-div'>
       <p className='login'>Login</p>
-      <form onSubmit={handleFormSubmit}>
+      <form className='login-form' onSubmit={handleFormSubmit}>
         <div className='login-maindiv'>
           <label htmlFor='userName'>Username</label>
           <input

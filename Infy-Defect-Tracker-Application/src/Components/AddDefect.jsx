@@ -1,31 +1,86 @@
-import React from 'react';
-import './Style.css';
+import React, { useState } from "react";
+import "./Style.css";
 
-// Should be made visible to tester role only
+// Should be made visible to Tester role only
 const AddDefect = () => {
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [priority, setPriority] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!category || !description.trim()) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
+    const finalPriority = priority ? parseInt(priority) : 100;
+    const defectData = {
+      category,
+      description,
+      priority: finalPriority,
+    };
+
+    console.log("Submitted defect:", defectData);
+    alert("Success");
+
+    setCategory("");
+    setDescription("");
+    setPriority("");
+  };
+
   return (
     <div className="add-defects-container">
       <div>
-        <p className='add'>Add Defects</p>
+        <p className="add">Add Defects</p>
       </div>
       <div className="main-add">
-        <form>
-          Defect Category
-          <select id="categoryDropdown">
-            <option value=""></option>
-            <option value="ui"> UI </option>
-            <option value="func"> Functional </option>
-            <option value="req"> Change Request </option>
-          </select>
+        <form className="add-form" onSubmit={handleSubmit}>
+          <label>
+            Defect Category
+            <select
+              id="categoryDropdown"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            >
+              <option value=""></option>
+              <option value="ui">UI</option>
+              <option value="func">Functional</option>
+              <option value="req">Change Request</option>
+            </select>
+          </label>
 
-          <br/>
-          Description <textarea id="defect-desc" placeholder="Enter description"></textarea>
+          <br />
 
-          <br/>
-          Priority <input type="number" min="1" max="100" id="priority"/>
+          <label>
+            Description
+            <textarea
+              id="defect-desc"
+              placeholder="Enter description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+          </label>
 
-          <br/>
-          <button type="submit" className="submit">Add Defect</button>
+          <br />
+
+          <label>
+            Priority
+            <input
+              type="number"
+              min="1"
+              max="100"
+              id="priority"
+              value={priority}
+              onChange={(e) => setPriority(e.target.value)}
+            />
+          </label>
+
+          <br />
+
+          <button type="submit">Submit</button>
         </form>
       </div>
     </div>

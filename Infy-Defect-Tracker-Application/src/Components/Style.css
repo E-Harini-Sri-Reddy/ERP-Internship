@@ -73,8 +73,13 @@ th, td {
     border-top-right-radius: 10px;
 }
 
-form {
+.add-form {
     padding: 15px;
+    border: 1px solid grey;
+    margin: 0px auto;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
 }
 
 #defect-desc {
@@ -88,4 +93,13 @@ form {
 #categoryDropdown,#priority {
     margin-bottom: 15px;
     height: 40px;
+}
+
+.status-closed {
+  color: grey;
+  text-decoration: none;
+}
+
+.status-open {
+  color: rgb(0, 111, 181);
 }
