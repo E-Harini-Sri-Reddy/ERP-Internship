@@ -30,7 +30,6 @@ function App() {
         {loggedIn ? (
           <div>
             <Navbar handleLogout={handleLogout}/>
-            <p>To be added!!!</p>
           </div>
         ) : (
           <LoginPage handleLogin={handleLogin} error={error} />
