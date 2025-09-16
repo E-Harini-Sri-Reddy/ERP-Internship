@@ -21,6 +21,16 @@ select {
   justify-content: center;
 }
 
+h3 {
+    font-weight: 100;
+}
+
+h5 {
+    font-weight: 600;
+    color: red;
+    margin: 0;
+}
+
 table {
     background-color: rgb(235, 235, 235);
     border-collapse: collapse;

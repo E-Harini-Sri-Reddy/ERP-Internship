@@ -3,10 +3,15 @@ import './Style.css';
 
 // Should be made visible to developer role only
 const ViewDefect = () => {
-  const [selectedValue, setSelectedValue] = useState('');
+  const [priorityValue, setPriorityValue] = useState('');
+  const [categoryValue, setCategoryValue] = useState('');
 
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+  const handlePriorityChange = (event) => {
+    setPriorityValue(event.target.value);
+  };
+
+  const handleCategoryChange = (event) => {
+    setCategoryValue(event.target.value);
   };
 
   return (
@@ -14,25 +19,27 @@ const ViewDefect = () => {
       <div className="filter-details">
         <h3> Filter Details </h3>
         Priority 
-        <select id="myDropdown" value={selectedValue} onChange={handleChange}>
+        <select id="priorityDropdown" value={priorityValue} onChange={handlePriorityChange}>
           <option value="">Choose an option</option>
-          <option value="option1"> All </option>
-          <option value="option2"> Ascending </option>
-          <option value="option3"> Descending </option>
+          <option value="all"> All </option>
+          <option value="asc"> Ascending </option>
+          <option value="desc"> Descending </option>
         </select>
 
         <br />
         <br />
         Category 
-        <select id="myDropdown" value={selectedValue} onChange={handleChange}>
+        <select id="categoryDropdown" value={categoryValue} onChange={handleCategoryChange}>
           <option value="">Choose an option</option>
-          <option value="opt1"> All </option>
-          <option value="opt2"> UI </option>
-          <option value="opt3"> Functional </option>
-          <option value="opt4"> Change Request </option>
+          <option value="all"> All </option>
+          <option value="ui"> UI </option>
+          <option value="functional"> Functional </option>
+          <option value="changeRequest"> Change Request </option>
         </select>
       </div>
 
+      <h3> Defect Details </h3>
+      <h5> Search Results : 3</h5>
       <div className="container-table">
         <div className="defects-table">
           <table>
