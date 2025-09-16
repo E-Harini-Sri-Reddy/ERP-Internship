@@ -20,7 +20,7 @@ const ViewDefect = () => {
         <h3> Filter Details </h3>
         Priority 
         <select id="priorityDropdown" value={priorityValue} onChange={handlePriorityChange}>
-          <option value="">Choose an option</option>
+          <option value=""></option>
           <option value="all"> All </option>
           <option value="asc"> Ascending </option>
           <option value="desc"> Descending </option>
@@ -29,8 +29,8 @@ const ViewDefect = () => {
         <br />
         <br />
         Category 
-        <select id="categoryDropdown" value={categoryValue} onChange={handleCategoryChange}>
-          <option value="">Choose an option</option>
+        <select id="catDropdown" value={categoryValue} onChange={handleCategoryChange}>
+          <option value=""></option>
           <option value="all"> All </option>
           <option value="ui"> UI </option>
           <option value="functional"> Functional </option>
@@ -80,7 +80,6 @@ const ViewDefect = () => {
           </table>
         </div>
       </div>
-
     </div>
   );
 };

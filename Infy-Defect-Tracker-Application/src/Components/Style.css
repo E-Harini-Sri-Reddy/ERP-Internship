@@ -1,5 +1,6 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 10;
 }
 
 .filter-details {
@@ -8,12 +9,21 @@
 }
 
 .filter-details > h3 {
-    margin: 0px;
+    font-size: 20px;
+    margin-top: 15px;
     font-weight: 100;
 }
 
 select {
     margin-left: 10px;
+}
+
+#catDropdown {
+    margin-bottom: 15px;
+}
+
+#priorityDropdown {
+    margin-top: 15px;
 }
 
 .container-table {
@@ -49,4 +59,33 @@ table > thead {
 th, td {
     padding: 8px 15px;
     text-align: center;
+}
+
+.add {
+    color: white;
+    background-color: rgb(0, 111, 181);
+    margin-bottom: 0;
+}
+
+.main-add {
+    background-color: rgb(235, 235, 235);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+form {
+    padding: 15px;
+}
+
+#defect-desc {
+    padding: 12px;
+}
+
+.submit {
+    margin-top: 20px;
+}
+
+#categoryDropdown,#priority {
+    margin-bottom: 15px;
+    height: 40px;
 }
