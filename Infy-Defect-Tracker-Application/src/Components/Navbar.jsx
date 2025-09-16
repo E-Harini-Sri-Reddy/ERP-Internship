@@ -16,7 +16,7 @@ const Navbar = ({ handleLogout }) => {
   return (
     <div>
       <button id='logout' className='logout' onClick={handleLogout}>Logout</button>
-      <br /><br />
+      <br />
       <button id='add-defect' className='add-defect' onClick={handleAddDefectClick}>Add Defect</button>
       <button id='view-defect' className='view-defect' onClick={handleViewDefectClick}>View Defect</button>
 

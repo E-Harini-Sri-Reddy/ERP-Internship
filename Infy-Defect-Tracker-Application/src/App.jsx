@@ -25,11 +25,11 @@ function App() {
 
   return (
     <>
-      <div className='container'>
+      <div className={loggedIn ? 'container container-logged-in' : 'container'}>
         <h1>Defect Tracker</h1>
         {loggedIn ? (
           <div>
-            <Navbar handleLogout={handleLogout}/>
+            <Navbar handleLogout={handleLogout} />
           </div>
         ) : (
           <LoginPage handleLogin={handleLogin} error={error} />

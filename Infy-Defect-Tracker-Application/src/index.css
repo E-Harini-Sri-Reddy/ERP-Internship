@@ -58,13 +58,13 @@ input:focus, textarea:focus, select:focus {
   margin-bottom: 10px;
 }
 
-.add-defect, .view-defect {
+.add-defect, .view-defect, .logout {
   text-decoration: underline;
   background-color: transparent;
   border: none;
 }
 
-.add-defect:hover, .view-defect:hover, .add-defect.clicked, .view-defect.clicked {
+.add-defect:hover, .view-defect:hover, .logout:hover {
   color: blue;
   cursor: pointer;
 }
