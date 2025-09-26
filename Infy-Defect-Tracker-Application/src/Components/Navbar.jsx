@@ -2,22 +2,13 @@ import React, { useState } from 'react';
 import AddDefect from './AddDefect';
 import ViewDefect from './ViewDefect';
 
-const Navbar = ({ handleLogout, role }) => {
+const Navbar = ({ handleLogout, role, defects, addDefect, updateDefectStatus }) => {
   const [activeView, setActiveView] = useState(() => {
-    // Default active view based on role:
-    if (role === 'admin') return 'view'; // admin sees view first, can switch
-    if (role === 'developer') return 'view'; // only view
-    if (role === 'tester') return 'add'; // only add
-    return 'view'; // fallback
+    if (role === 'admin') return 'view';
+    if (role === 'developer') return 'view';
+    if (role === 'tester') return 'add';
+    return 'view';
   });
-
-  const handleAddDefectClick = () => {
-    setActiveView('add');
-  };
-
-  const handleViewDefectClick = () => {
-    setActiveView('view');
-  };
 
   return (
     <div>
@@ -25,37 +16,39 @@ const Navbar = ({ handleLogout, role }) => {
         Logout
       </button>
       <br />
-      {/* Admin can see both buttons */}
       {role === 'admin' && (
         <>
-          <button id="add-defect" className="add-defect" onClick={handleAddDefectClick}>
+          <button id="add-defect" className="add-defect" onClick={() => setActiveView('add')}>
             Add Defect
           </button>
-          <button id="view-defect" className="view-defect" onClick={handleViewDefectClick}>
+          <button id="view-defect" className="view-defect" onClick={() => setActiveView('view')}>
             View Defect
           </button>
         </>
       )}
-
-      {/* Developer sees only View */}
       {role === 'developer' && (
-        <button id="view-defect" className="view-defect" onClick={handleViewDefectClick}>
+        <button id="view-defect" className="view-defect" onClick={() => setActiveView('view')}>
           View Defect
         </button>
       )}
-
-      {/* Tester sees only Add */}
       {role === 'tester' && (
-        <button id="add-defect" className="add-defect" onClick={handleAddDefectClick}>
+        <button id="add-defect" className="add-defect" onClick={() => setActiveView('add')}>
           Add Defect
         </button>
       )}
 
       <div>
-        {/* Render components based on role and activeView */}
-        {role === 'admin' && (activeView === 'add' ? <AddDefect /> : <ViewDefect />)}
-        {role === 'developer' && <ViewDefect />}
-        {role === 'tester' && <AddDefect />}
+        {role === 'admin' && (activeView === 'add' ? (
+          <AddDefect addDefect={addDefect} />
+        ) : (
+          <ViewDefect defects={defects} updateDefectStatus={updateDefectStatus} />
+        ))}
+
+        {role === 'developer' && (
+          <ViewDefect defects={defects} updateDefectStatus={updateDefectStatus} />
+        )}
+
+        {role === 'tester' && <AddDefect addDefect={addDefect} />}
       </div>
     </div>
   );

@@ -1,49 +1,49 @@
-import React, { useState } from 'react';
-import './Style.css';
+import React, { useState, useMemo } from "react";
+import "./Style.css";
 
-// Should be made visible to Developer role only
-const ViewDefect = () => {
-  const [priorityValue, setPriorityValue] = useState('');
-  const [categoryValue, setCategoryValue] = useState('');
+const ViewDefect = ({ defects, updateDefectStatus }) => {
+  const [priorityFilter, setPriorityFilter] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
 
-  const handlePriorityChange = (event) => {
-    setPriorityValue(event.target.value);
+  // Normalize category filter input to match defect categories
+  const normalizedCategoryFilter = categoryFilter.toLowerCase();
+
+  // Filter and sort defects based on selected filters
+  const filteredDefects = useMemo(() => {
+    let filtered = [...defects];
+
+    // Filter by category
+    if (categoryFilter && categoryFilter !== "all") {
+      filtered = filtered.filter(
+        (defect) => defect.category.toLowerCase() === normalizedCategoryFilter
+      );
+    }
+
+    // Sort by priority
+    if (priorityFilter === "asc") {
+      filtered.sort((a, b) => a.priority - b.priority);
+    } else if (priorityFilter === "desc") {
+      filtered.sort((a, b) => b.priority - a.priority);
+    }
+
+    return filtered;
+  }, [defects, categoryFilter, priorityFilter, normalizedCategoryFilter]);
+
+  // Handle closing defect by index
+  const handleCloseDefect = (index) => {
+    updateDefectStatus(index, "closed");
   };
-
-  const handleCategoryChange = (event) => {
-    setCategoryValue(event.target.value);
-  };
-
-  const defects = [
-    {
-      category: 'UI',
-      description: 'Submit Button coming to the extreme left. Refer the screenshots.',
-      priority: 2,
-      status: 'open',
-      action: 'Close Defect',
-    },
-    {
-      category: 'Functional',
-      description: 'While submitting the form data, a confirmation popup should appear. Refer the SRS document.',
-      priority: 1,
-      status: 'open',
-      action: 'Close Defect',
-    },
-    {
-      category: 'Change Request',
-      description: 'Add remove user functionality',
-      priority: 3,
-      status: 'closed',
-      action: 'No action pending',
-    },
-  ];
 
   return (
     <div className="view-div">
       <div className="filter-details">
         <h3>Filter Details</h3>
         Priority
-        <select id="priorityDropdown" value={priorityValue} onChange={handlePriorityChange}>
+        <select
+          id="priorityDropdown"
+          value={priorityFilter}
+          onChange={(e) => setPriorityFilter(e.target.value)}
+        >
           <option value=""></option>
           <option value="all">All</option>
           <option value="asc">Ascending</option>
@@ -53,44 +53,63 @@ const ViewDefect = () => {
         <br />
         <br />
         Category
-        <select id="catDropdown" value={categoryValue} onChange={handleCategoryChange}>
+        <select
+          id="catDropdown"
+          value={categoryFilter}
+          onChange={(e) => setCategoryFilter(e.target.value)}
+        >
           <option value=""></option>
           <option value="all">All</option>
           <option value="ui">UI</option>
           <option value="functional">Functional</option>
-          <option value="changeRequest">Change Request</option>
+          <option value="change request">Change Request</option>
         </select>
       </div>
 
-      <h3>Defect Details</h3>
-      <h5>Search Results : {defects.length}</h5>
-      <div className="container-table">
-        <div className="defects-table">
-          <table>
+      <div className="defects-container">
+        <h3>Defects List</h3>
+
+        <p className='view-res'>
+          Search Results: {filteredDefects.length}
+        </p>
+
+        {filteredDefects.length === 0 ? (
+          <p>No defects found.</p>
+        ) : (
+          <table className="view-defects-table" border="1">
             <thead>
               <tr>
-                <th>Defect Category</th>
+                <th>Category</th>
                 <th>Description</th>
                 <th>Priority</th>
                 <th>Status</th>
-                <th>Change Status</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {defects.map((defect, index) => (
+              {filteredDefects.map((defect, index) => (
                 <tr key={index}>
                   <td>{defect.category}</td>
                   <td>{defect.description}</td>
                   <td>{defect.priority}</td>
                   <td>{defect.status}</td>
-                  <td className={defect.status === 'closed' ? 'status-closed' : 'status-open'}>
-                    {defect.action}
+                  <td>
+                    {defect.status === "open" ? (
+                      <button
+                        className="close-but"
+                        onClick={() => handleCloseDefect(index)}
+                      >
+                        Close Defect
+                      </button>
+                    ) : (
+                      defect.action
+                    )}
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
+        )}
       </div>
     </div>
   );

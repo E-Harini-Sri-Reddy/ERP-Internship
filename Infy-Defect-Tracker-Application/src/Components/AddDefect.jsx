@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./Style.css";
 
-// Should be made visible to Tester role only
-const AddDefect = () => {
+const AddDefect = ({ addDefect }) => {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
@@ -15,15 +14,20 @@ const AddDefect = () => {
     }
 
     const finalPriority = priority ? parseInt(priority) : 100;
+
     const defectData = {
       category,
       description,
       priority: finalPriority,
+      status: "open", // default status when adding
+      action: "Close Defect",
     };
 
-    console.log("Submitted defect:", defectData);
-    alert("Success");
+    addDefect(defectData);
 
+    alert("Defect added successfully!");
+
+    // Clear form
     setCategory("");
     setDescription("");
     setPriority("");
@@ -45,9 +49,9 @@ const AddDefect = () => {
               required
             >
               <option value=""></option>
-              <option value="ui">UI</option>
-              <option value="func">Functional</option>
-              <option value="req">Change Request</option>
+              <option value="UI">UI</option>
+              <option value="Functional">Functional</option>
+              <option value="Change Request">Change Request</option>
             </select>
           </label>
 
